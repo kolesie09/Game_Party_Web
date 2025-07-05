@@ -96,3 +96,43 @@
   background-color: #dddddd;
   border-color: #999;
 }
+
+.new-answers {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  border: 2px solid #4caf50;
+  border-radius: 12px;
+  background-color: #e8f5e9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.new-answers h4 {
+  color: #2e7d32;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.new-answer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.new-answer-item {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #1b5e20;
+  font-size: 1.05rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

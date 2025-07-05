@@ -8,11 +8,20 @@
 .navbar .nav-link {
   color: #fff;
   text-align: none !important;
-  margin-right: 20px;
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 576px) {
   .navbar .nav-link {
     margin-right: 0;
   }
+}
+.navbar-nav .nav-link.active {
+  font-weight: 600;
+  color: #ffd700 !important; /* złoty dla wyróżnienia */
+}
+
+.navbar-nav .dropdown-menu {
+  border-radius: 0.25rem;
 }

@@ -28,7 +28,7 @@ const Familiada = () => {
       const top4 = sorted.slice(0, 4);
 
       setQuestion(data.name);
-      setQuestionId(data.id); // <- TO!
+      setQuestionId(data.id);
       setAllAnswers(sorted);
       setAnswers(top4);
       setRevealed(Array(top4.length).fill(null));
@@ -44,19 +44,31 @@ const Familiada = () => {
     loadQuestion();
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // zapobiega przeładowaniu strony
+
+    if (!input.trim()) return; // jeśli pusty input, nic nie rób
+
     const text = removeDiacritics(input.trim().toLowerCase());
 
     const index = answers.findIndex(
       (a) => removeDiacritics(a.name.toLowerCase()) === text
     );
 
-    if (index !== -1 && !revealed[index]) {
+    if (index !== -1) {
+      // Odpowiedź już istnieje, odsłoń ją lokalnie i zwiększ punktację na backendzie
       const newRevealed = [...revealed];
       newRevealed[index] = answers[index];
       setRevealed(newRevealed);
+
+      try {
+        await saveAnswer({ name: answers[index].name, point: 1 });
+        //await loadQuestion();
+      } catch (error) {
+        console.error("Błąd zapisu odpowiedzi:", error);
+      }
     } else {
+      // Nowa odpowiedź — sprawdź czy już nie dodana lokalnie
       const alreadyExists = newanswers.some(
         (a) => removeDiacritics(a.name.toLowerCase()) === text
       );
@@ -64,37 +76,38 @@ const Familiada = () => {
       if (!alreadyExists) {
         const newAnswer = { name: input.trim(), point: 1 };
         setNewAnswers((prev) => [...prev, newAnswer]);
-        saveAnswer(newAnswer);
+        try {
+          await saveAnswer(newAnswer);
+          //await loadQuestion();
+        } catch (error) {
+          console.error("Błąd zapisu odpowiedzi:", error);
+        }
       }
     }
 
-    setInput("");
+    setInput(""); // wyczyść input po obsłużeniu
   };
 
   const revealAllAnswers = () => {
-    setAnswers(allAnswers); // pokaż pełną listę
-    setRevealed(allAnswers); // odkryj wszystkie
+    setAnswers(allAnswers);
+    setRevealed(allAnswers);
     setShowAll(true);
   };
 
   const saveAnswer = async (answer) => {
-    try {
-      const res = await fetch(
-        `http://localhost:8080/api/familiada/${questionId}/answers`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(answer),
-        }
-      );
-
-      if (!res.ok) {
-        throw new Error("Nie udało się zapisać odpowiedzi.");
+    const res = await fetch(
+      `http://localhost:8080/api/familiada/${questionId}/answers`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(answer),
       }
-    } catch (error) {
-      console.error("Błąd zapisu odpowiedzi:", error);
+    );
+
+    if (!res.ok) {
+      throw new Error("Nie udało się zapisać odpowiedzi.");
     }
   };
 
@@ -126,7 +139,11 @@ const Familiada = () => {
             placeholder="Twoja odpowiedź"
             autoComplete="off"
           />
-          <button className="answer-button" type="submit">
+          <button
+            className="answer-button"
+            type="submit"
+            disabled={!input.trim()}
+          >
             OK
           </button>
         </form>

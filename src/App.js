@@ -5,6 +5,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import NoMatch from "./pages/noMatch/NoMatch";
 import Familiada from "./pages/game/Familiada";
 import SettingsFamiliada from "./pages/settings/familiada/SettingsFamiliada";
+import AddQuestion from "./pages/settings/familiada/AddQuestion";
 
 function App() {
   return (
@@ -16,6 +17,10 @@ function App() {
         <Route
           path="/settings/familiada/SettingsFamiliada"
           element={<SettingsFamiliada />}
+        />
+        <Route
+          path="/settings/familiada/AddQuestion"
+          element={<AddQuestion />}
         />
         <Route path="*" element={<NoMatch />} />
       </Routes>
