@@ -89,8 +89,8 @@ const Familiada = () => {
   };
 
   const revealAllAnswers = () => {
-    setAnswers(allAnswers);
-    setRevealed(allAnswers);
+    setAnswers(answers);
+    setRevealed(answers);
     setShowAll(true);
   };
 

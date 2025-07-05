@@ -38,10 +38,10 @@ const Header = () => {
               </NavDropdown.Item>
               <NavDropdown.Item
                 as={Link}
-                to="/game/InnaGra1"
-                active={location.pathname === "/game/InnaGra1"}
+                to="/game/Milionerzy"
+                active={location.pathname === "/game/Milionerzy"}
               >
-                Inna Gra 1
+                Milionerzy
               </NavDropdown.Item>
               <NavDropdown.Item
                 as={Link}

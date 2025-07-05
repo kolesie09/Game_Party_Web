@@ -6,6 +6,7 @@ import NoMatch from "./pages/noMatch/NoMatch";
 import Familiada from "./pages/game/Familiada";
 import SettingsFamiliada from "./pages/settings/familiada/SettingsFamiliada";
 import AddQuestion from "./pages/settings/familiada/AddQuestion";
+import Milionerzy from "./pages/game/Milionerzy";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           path="/settings/familiada/AddQuestion"
           element={<AddQuestion />}
         />
+        <Route path="/game/Milionerzy" element={<Milionerzy />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </>

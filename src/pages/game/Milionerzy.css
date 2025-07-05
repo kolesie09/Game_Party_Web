@@ -1,0 +1,72 @@
+.milionerzy-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 25px 30px;
+  background: #f0f4f8;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgb(0 0 0 / 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.milionerzy-title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.milionerzy-question {
+  font-size: 1.3rem;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.level-list {
+  margin-bottom: 30px;
+}
+.level-item {
+  background-color: #ffffff;
+  margin: 6px 0;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+  font-weight: 600;
+  font-size: 1rem;
+  color: #222;
+}
+.answer-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* odstęp między przyciskami */
+  max-width: 500px;
+  margin: 0 auto; /* wycentrowanie przycisków */
+  justify-content: center; /* wyśrodkowanie */
+}
+
+.answer-button {
+  flex: 1 1 47%; /* dwa przyciski w wierszu */
+  min-width: 120px;
+  padding: 12px 0;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  box-sizing: border-box;
+  transition: background-color 0.3s ease;
+}
+
+.answer-button:hover {
+  background-color: #0056b3;
+}
+
+.answer-button:hover {
+  background-color: #0056b3;
+}
+
+.level-item.highlighted {
+  background-color: #007bff;
+  color: white;
+  border-radius: 6px;
+}
