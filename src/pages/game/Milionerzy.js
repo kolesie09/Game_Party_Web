@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./Milionerzy.css";
 
 const Milionerzy = () => {
-  const [level, setLevel] = useState([
+  const [level] = useState([
     "1 000 000",
     "500 000",
     "250 000",
@@ -17,19 +19,37 @@ const Milionerzy = () => {
     "500",
   ]);
   const [question, setQuestion] = useState("");
+  const [questionId, setQuestionId] = useState();
   const [answers, setAnswers] = useState([]);
   const [correctAnswer, setCorrectAnswer] = useState("");
   const [nowLevel, setNowLevel] = useState(11); // 12, bo 13. pytanie = 1 000 000
 
+  const updateLevelOnServer = async (questionId, wasCorrect) => {
+    try {
+      await fetch(
+        `http://localhost:8080/api/milionerzy/question/${questionId}/level?correctAnswer=${wasCorrect}`,
+        { method: "PUT" }
+      );
+    } catch (err) {
+      console.error("Błąd podczas aktualizacji poziomu pytania:", err);
+    }
+  };
+  const shuffleArray = (array) => {
+    return [...array].sort(() => Math.random() - 0.5);
+  };
+
   const loadQuestion = async () => {
     try {
       const res = await fetch(
-        `http://localhost:8080/api/milionerzy/question?level=${nowLevel}`
+        `http://localhost:8080/api/milionerzy/question?level=${nowLevel + 1}`
       );
       const data = await res.json();
 
+      console.log("Pobrane ID pytania:", data.id);
+      setQuestionId(data.id);
       setQuestion(data.name);
-      setAnswers(data.answers);
+      const shuffledAnswers = shuffleArray(data.answers);
+      setAnswers(shuffledAnswers);
       setCorrectAnswer(data.correctAnswer); // załóżmy że backend to zwraca
     } catch (error) {
       console.error("Błąd podczas pobierania pytania:", error);
@@ -38,23 +58,29 @@ const Milionerzy = () => {
   };
 
   useEffect(() => {
-    loadQuestion();
+    if (nowLevel >= 0 && nowLevel < 12) {
+      loadQuestion();
+    }
   }, [nowLevel]);
 
   const handleSubmit = (answer) => {
-    if (answer.id === correctAnswer) {
-      alert("Dobra odpowiedź!");
+    const wasCorrect = answer.id === correctAnswer;
+    if (wasCorrect) {
+      toast.success("Dobra odpowiedź!");
       if (nowLevel > 0) {
         setNowLevel(nowLevel - 1);
-        loadQuestion();
       } else {
-        alert("Gratulacje! Wygrałeś milion!");
+        toast.success("Gratulacje! Wygrałeś milion!");
       }
     } else {
-      alert("Zła odpowiedź. Koniec gry.");
-      setNowLevel(11);
-      // tutaj możesz dodać reset lub coś innego
+      toast.error("Zła odpowiedź. Koniec gry.");
+      if (nowLevel === 11) {
+        loadQuestion();
+      } else {
+        setNowLevel(11);
+      }
     }
+    updateLevelOnServer(questionId, wasCorrect);
   };
 
   return (

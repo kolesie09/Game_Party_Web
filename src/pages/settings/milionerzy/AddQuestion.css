@@ -1,0 +1,79 @@
+.center-form {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 2rem;
+  background: #f2f2f2;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.simple-form input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.btn-submit {
+  margin-top: 2rem;
+  width: 100%;
+  padding: 12px;
+  background: #007bff;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn-submit:hover {
+  background: #0056b3;
+}
+.success-message {
+  margin-top: 15px;
+  color: green;
+  font-weight: bold;
+  text-align: center;
+}
+.select-level {
+  margin: 10px 0;
+  padding: 5px;
+  font-size: 16px;
+}
+.answer-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.select-level {
+  width: 100%;
+  max-width: 220px;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: 2px solid #007bff;
+  border-radius: 6px;
+  background-color: white;
+  color: #333;
+  appearance: none; /* usuwa domyślny styl przeglądarki */
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2210%22%20height%3D%227%22%20viewBox%3D%220%200%2010%207%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200l5%207%205-7z%22%20fill%3D%22%23007bff%22/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 10px 7px;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-sizing: border-box;
+}
+
+.select-level:focus {
+  border-color: #0056b3;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+.mt-10 {
+  margin-top: 10px;
+}

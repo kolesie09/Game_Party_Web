@@ -52,16 +52,40 @@ const Header = () => {
               </NavDropdown.Item>
               {/* Dodaj więcej gier w razie potrzeby */}
             </NavDropdown>
-
-            <Nav.Link
-              as={Link}
-              to="/settings/familiada/SettingsFamiliada"
-              active={
-                location.pathname === "/settings/familiada/SettingsFamiliada"
-              }
+            <NavDropdown
+              title="Ustawienia"
+              id="games-dropdown"
+              menuVariant="dark"
+              className="nav-link"
             >
-              Ustawienia Familiady
-            </Nav.Link>
+              <NavDropdown.Item
+                as={Link}
+                to="/settings/familiada/SettingsFamiliada"
+                active={
+                  location.pathname === "/settings/familiada/SettingsFamiliada"
+                }
+              >
+                Familiada
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                as={Link}
+                to="/settings/milionerzy/SettingsMilionerzy"
+                active={
+                  location.pathname ===
+                  "/settings/milionerzy/SettingsMilionerzy"
+                }
+              >
+                Milionerzy
+              </NavDropdown.Item>
+              <NavDropdown.Item
+                as={Link}
+                to="/game/InnaGra2"
+                active={location.pathname === "/game/InnaGra2"}
+              >
+                Inna Gra 2
+              </NavDropdown.Item>
+              {/* Dodaj więcej gier w razie potrzeby */}
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>

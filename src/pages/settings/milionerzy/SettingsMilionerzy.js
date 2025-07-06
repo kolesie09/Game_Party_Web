@@ -1,15 +1,15 @@
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
-import "./SettingsFamiliada.css";
+import "./SettingsMilionerzy.css";
 
-const SettingsFamiliada = () => {
+const SettingsMilionerzy = () => {
   return (
     <>
       <div className="familiada-container">
-        <h1>Ustawienia Familiada</h1>
+        <h1>Ustawienia Milonerzy</h1>
         <Button
           as={Link}
-          to="/settings/familiada/AddQuestion"
+          to="/settings/milionerzy/AddQuestion"
           className="answer-button"
         >
           Dodaj pytanie
@@ -17,7 +17,7 @@ const SettingsFamiliada = () => {
 
         <Button
           as={Link}
-          to="/settings/familiada/AddAnswer"
+          to="/settings/milionerzy/AddAnswer"
           className="answer-button"
         >
           Dodaj odpowiedzi
@@ -27,4 +27,4 @@ const SettingsFamiliada = () => {
   );
 };
 
-export default SettingsFamiliada;
+export default SettingsMilionerzy;
